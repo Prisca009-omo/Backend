@@ -1,17 +1,17 @@
-const express = require("express");
-const router = express.Router();
-const Service = require("../models/Service");
+import { Router } from "express";
+const router = Router();
+import { find, findById } from "../models/Service";
 
 // GET all services
 router.get("/", async (req, res) => {
-    const services = await Service.find();
+    const services = await find();
     res.json(services);
 });
 
 // GET service by ID (Week 2 refinement)
 router.get("/:id", async (req, res) => {
     try {
-        const service = await Service.findById(req.params.id);
+        const service = await findById(req.params.id);
         if (!service) return res.status(404).json({ error: "Service not found" });
         res.json(service);
     } catch (err) {
@@ -19,4 +19,4 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

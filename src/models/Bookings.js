@@ -1,10 +1,21 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-const bookingSchema = new mongoose.Schema({
-    service: { type: mongoose.Schema.Types.ObjectId, ref: "Service", required: true },
+const bookingSchema = new Schema(
+  {
+    service: {
+      type: Schema.Types.ObjectId,
+      ref: "Service",
+      required: true,
+    },
     customerName: { type: String, required: true },
     customerEmail: { type: String, required: true },
-    status: { type: String, enum: ["pending", "confirmed"], default: "pending" }
-}, { timestamps: true });
+    status: {
+      type: String,
+      enum: ["pending", "confirmed"],
+      default: "pending",
+    },
+  },
+  { timestamps: true }
+);
 
-module.exports = mongoose.model("Booking", bookingSchema);
+export default model("Booking", bookingSchema);
