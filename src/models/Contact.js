@@ -8,5 +8,6 @@ const contactSchema = new Schema(
   },
   { timestamps: true }
 );
+const ContactModel = model("Contact", contactSchema);
 
-export default model("Contact", contactSchema);
+export default ContactModel;

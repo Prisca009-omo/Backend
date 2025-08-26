@@ -2,6 +2,7 @@ import express, { Router } from "express";
 import { connect } from "mongoose";
 import contactRouter from "./routes/contactRoutes.js";
 import scheduleRouter from "./routes/bookingRoutes.js";
+import serviceRouter from "./routes/serviceRoutes.js";
 
 const PORT = process.env.PORT || 5000;
 
@@ -13,7 +14,9 @@ app.use(express.json());
 
 app.use("/contact", contactRouter);
 
-app.use("/schedule", scheduleRouter)
+app.use("/schedule", scheduleRouter);
+
+app.use("/service", serviceRouter);
 
 connect(MONGO_URI)
   .then(() => {
