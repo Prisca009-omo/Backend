@@ -2,26 +2,18 @@ import { Router } from "express";
 
 import ServiceModel from "../models/Service.js";
 
-// import { find, findById } from "../models/Service.js";
-
 const serviceRouter = Router();
 
-// GET all services
-// serviceRouter.get("/", async (req, res) => {
-//   const services = await find();
-//   res.json(services);
-// });
+serviceRouter.get("/services", async (req, res) => {
+  const allServices = await ServiceModel.find();
+  res.json(allServices);
+});
 
-// GET service by ID (Week 2 refinement)
-// serviceRouter.get("/:id", async (req, res) => {
-//   try {
-//     const service = await findById(req.params.id);
-//     if (!service) return res.status(404).json({ error: "Service not found" });
-//     res.json(service);
-//   } catch (err) {
-//     res.status(400).json({ error: "Invalid ID format" });
-//   }
-// });
+serviceRouter.get("/services/:id", async (req, res) => {
+  const theId = req.params.id;
+  const idService = await ServiceModel.findById(theId);
+  res.json(idService);
+});
 
 serviceRouter.post("/addService", async (req, res) => {
   const myData = req.body;
