@@ -20,6 +20,3 @@ const bookingSchema = new Schema(
 const ScheduleModel = model("Booking", bookingSchema);
 
 export default ScheduleModel;
-
-
-
