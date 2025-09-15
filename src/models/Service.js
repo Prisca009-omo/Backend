@@ -4,7 +4,7 @@ const serviceSchema = new Schema(
   {
     title: { type: String, required: true },
     description: String,
-    price: { type: Number, required: true },
+    price: { type: String, required: true },
     category: String,
     image: String,
   },
