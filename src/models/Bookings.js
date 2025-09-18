@@ -9,6 +9,8 @@ const bookingSchema = new Schema(
     },
     customerName: { type: String, required: true },
     customerEmail: { type: String, required: true },
+    customerPhoneNumber: { type: Number, required: true },
+    additionalInformation: { type: String, required: true },
     status: {
       type: String,
       enum: ["pending", "confirmed"],

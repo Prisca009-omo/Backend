@@ -7,6 +7,7 @@ import PaymentRouter from "./models/Payment.js";
 import path from "path";
 import { fileURLToPath } from "url";
 import paymentRouter from "./routes/paymentRoutes.js";
+import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,14 @@ const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/thl_db";
 
 const app = express();
+
+const corsOptions = {
+  origin: ["http://localhost:3001"],
+  credentials: true,
+  optionsSuccessStatus: 200, // NOTE: This is for some legacy browsers (IE11, various SmartTVs) that choke on 204
+};
+
+app.use(cors(corsOptions)); // NOTE: Here, we set up cors.
 
 export const imageDirectory = path.join(__dirname, "public");
 app.use("/image", express.static(imageDirectory));

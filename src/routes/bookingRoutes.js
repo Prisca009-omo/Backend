@@ -15,31 +15,40 @@ scheduleRouter.get("/schedules/:id", async (req, res) => {
 });
 
 scheduleRouter.post("/addSchedule", async (req, res) => {
-  try {
-    let myData = req.body;
-    const valid = bookingValidation(myData);
+  // try {
+  let myData = req.body;
+  console.log(myData);
+  const valid = bookingValidation(myData);
+  console.log(typeof myData.customerPhoneNumber);
 
-    // const schedule = new ScheduleModel(myData);
-    // await schedule.save();
-    if (valid) {
-      myData = {
-        service: myData.service?.trim(),
-        customerName: myData.customerName?.trim(),
-        customerEmail: myData.customerEmail?.trim(),
-        status: myData.status?.trim(),
-      };
+  const schedule = new ScheduleModel(myData);
+  await schedule.save();
 
-      return res.json({
-        myService: myData.service,
-        myCustomerName: myData.customerName,
-        myCustomerEmail: myData.customerEmail,
-        myStatus: myData.status,
-      });
-    }
-    return res.status(404).send();
-  } catch {
+  console.log(valid);
+
+  if (valid) {
+    myData = {
+      service: myData.service?.trim(),
+      customerName: myData.customerName?.trim(),
+      customerEmail: myData.customerEmail?.trim(),
+      customerPhoneNumber: myData.customerPhoneNumber?.trim(),
+      additionalInformation: myData.additionalInformation?.trim(),
+    };
+
+    return res.json({
+      myService: myData.service,
+      myCustomerName: myData.customerName,
+      myCustomerEmail: myData.customerEmail,
+      myCustomerPhoneNumber: myData.myCustomerPhoneNumber,
+      additionalInformation: myData.additionalInformation,
+    });
+  } else {
     return res.status(404).send();
   }
+
+  // } catch {
+  //   return res.status(404).send();
+  // }
 });
 
 export default scheduleRouter;
