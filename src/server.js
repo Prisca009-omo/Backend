@@ -19,7 +19,7 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/thl_db";
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3001"],
+  origin: ["http://localhost:3001", "http://localhost:3002"],
   credentials: true,
   optionsSuccessStatus: 200, // NOTE: This is for some legacy browsers (IE11, various SmartTVs) that choke on 204
 };
