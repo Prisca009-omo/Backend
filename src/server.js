@@ -34,6 +34,7 @@ const corsOptions = {
     "http://localhost:3001",
     "http://localhost:3002",
     "http://localhost:3001",
+    "https://team3handyman.vercel.app",
   ],
   credentials: true,
   optionsSuccessStatus: 200, // NOTE: This is for some legacy browsers (IE11, various SmartTVs) that choke on 204
