@@ -9,6 +9,7 @@ import { fileURLToPath } from "url";
 import paymentRouter from "./routes/paymentRoutes.js";
 import cors from "cors";
 import { config } from "dotenv";
+import { v2 as cloudinary } from "cloudinary";
 
 config();
 
@@ -19,11 +20,21 @@ const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 5000;
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true, // Return "https" URLs by setting secure: true
+});
 
 const app = express();
 
 const corsOptions = {
-  origin: ["http://localhost:3001", "http://localhost:3002"],
+  origin: [
+    "http://localhost:3001",
+    "http://localhost:3002",
+    "http://localhost:3001",
+  ],
   credentials: true,
   optionsSuccessStatus: 200, // NOTE: This is for some legacy browsers (IE11, various SmartTVs) that choke on 204
 };
